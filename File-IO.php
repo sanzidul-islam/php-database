@@ -9,85 +9,78 @@
 <body>
     <?php
      include "Database/dbinsert.php";
-    $fname= $lname= $gender= $bdate= $reg= $p= $pp=$c=$m=$userName=$Password="";
-    $lnameEr= $fnameEr= $genderEr= $bdateEr= $regEr=$pEr=$ppEr=$cEr=$mEr=$userNameEr=$PasswordEr="";
+    $fname= $lname= $gender= $bdate= $reg= $p= $pp=$m=$userName=$Password="";
+    $lnameEr= $fnameEr= $genderEr= $bdateEr= $regEr=$pEr=$ppEr=$mEr=$userNameEr=$PasswordEr="";
     $flag=false;
     $successfulMessage="";
     $errorMessage="";
 
 
     if($_SERVER['REQUEST_METHOD']==="POST"){
-        $fname = $_POST['fname'];
-        $lname = $_POST['lname'];
-        $gender= $_POST['gender'];
-
-        echo $_POST['fname'];
-        echo $_POST['lname'];
-        echo $_POST['gender'];
-
-        $bdate= $_POST['bdate'];
-        $reg = $_POST['reg'];
-        $p= $_POST['p'];
-        $pp= $_POST['pp'];
-        $c= $_POST['c'];
-        $m= $_POST['m'];
-        $userName= $_POST['userName'];
-        $Password= $_POST['password'];
+       
        
 
-        if(empty($fname)) {
+        if(empty( $_POST['fname'])) {
             $fnameEr = "First name can not be empty!";
             $flag=true;
             }
-       if(empty($lname)) {
+       if(empty($_POST['lname'])) {
             $lnameEr = "Last name can not be empty!";
             $flag=true;
             }
 
-        if(empty($gender)) {
+        if(empty($_POST['gender'])) {
             $genderEr = "gender  can not be empty!";
                 $flag=true;
                 }
 
-        if(empty($bdate)) {
+        if(empty($_POST['bdate'])) {
           $bdateEr = "birth date  can not be empty!";
              $flag=true;
              }
 
-        if(empty($reg)) {
+        if(empty($_POST['reg'])) {
           $regEr = "religion  can not be empty!";
           $flag=true;
           } 
          
-        if(empty($p)) {
+        if(empty( $_POST['p'])) {
             $pEr = "present address  can not be empty!";
                $flag=true;
                }
 
-        if(empty($pp)) {
+        if(empty($_POST['pp'])) {
           $ppEr = "permanent address can not be empty!";
           $flag=true;
              }
 
-        if(empty($c)) {
-            $cEr = "contack number can not be empty!";
-            $flag=true;
-         
-        }
-        if(empty($m)) {
+        if(empty($_POST['m'])) {
             $mEr = "mail can not be empty!";
             $flag=true;
         }
-        if(empty($userName)) {
+        if(empty($_POST['userName'])) {
             $userNameEr = "user name can not be empty!";
             $flag=true;
         }
-        if(empty($Password)) {
+        if(empty( $_POST['Password'])) {
             $PasswordEr = " can not be empty!";
             $flag=true;
             }
         if(!$flag){
-                $result =write($fname . "," . $lname ."," . $gender ."," . $bdate . "," . $reg . "," . $p . "," . $pp . "," . $c . "," . $m . "," . $userName . "," . $Password . "\n");
+              
+              $fname = $_POST['fname'];
+              $lname = $_POST['lname'];
+              $gender= $_POST['gender'];
+      
+      
+              $bdate= $_POST['bdate'];
+              $reg = $_POST['reg'];
+              $p= $_POST['p'];
+              $pp= $_POST['pp'];
+              $m= $_POST['m'];
+              $userName= $_POST['userName'];
+              $Password= $_POST['Password'];
+              $result=add($fname, $lname, $gender, $bdate, $reg, $p, $pp, $m, $userName, $Password); 
                 if($result){
                     $successfulMessage="successfully saved";
                 }
@@ -163,11 +156,7 @@
         <span style=color:red><?php echo $ppEr;?></span>
         <br><br>
 
-        <label for="c">Phone</label>
-        <input type="text" id="c" name="c">
-        <span style=color:red><?php echo $cEr;?></span>
-        <br>
-        <br>
+        
         <label for="m">Mail</label>
         <input type="text" id="m" name="m">
         <span style=color:red><?php echo $mEr;?></span>
